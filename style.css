@@ -1,0 +1,71 @@
+/* ============================================
+   ROSHAN FAISAL PORTFOLIO — LIGHT THEME
+   Brand: Navy #0A1A2F · Purple #7C5CFC
+   ============================================ */
+:root {
+  --navy:        #0A1A2F;
+  --purple:      #7C5CFC;
+  --purple-dark: #5B3FD4;
+  --purple-light:#9B84FD;
+  --purple-dim:  rgba(124,92,252,0.10);
+  --purple-glow: rgba(124,92,252,0.06);
+  --teal:        #00A896;
+  --bg:          #FFFFFF;
+  --bg-soft:     #F7F8FC;
+  --bg-card:     #FFFFFF;
+  --text:        #0A1A2F;
+  --text-muted:  #4A5568;
+  --text-dim:    #9AA5B4;
+  --border:      rgba(124,92,252,0.2);
+  --border-soft: #E8ECF4;
+  --shadow:      0 1px 4px rgba(10,26,47,0.07), 0 4px 16px rgba(10,26,47,0.05);
+  --shadow-md:   0 2px 8px rgba(10,26,47,0.10), 0 8px 28px rgba(10,26,47,0.09);
+  --font-display:'Syne', sans-serif;
+  --font-body:   'DM Sans', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.7;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(circle,rgba(124,92,252,0.10) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0;opacity:.6;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 40px;background:rgba(255,255,255,0.93);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-soft);}
+.nav-logo{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--navy);text-decoration:none;letter-spacing:-.5px;}
+.nav-logo span{color:var(--purple);}
+.nav-links{display:flex;gap:4px;list-style:none;}
+.nav-links a{font-size:13px;color:var(--text-muted);text-decoration:none;font-weight:500;padding:7px 14px;border-radius:8px;transition:color .2s,background .2s;}
+.nav-links a:hover{color:var(--navy);background:var(--bg-soft);}
+.nav-links a.active{color:var(--purple);background:var(--purple-dim);}
+.nav-cta{font-size:13px;padding:9px 20px;border-radius:8px;background:var(--navy);color:#fff;text-decoration:none;font-weight:600;transition:background .2s;}
+.nav-cta:hover{background:var(--purple);}
+
+/* LAYOUT */
+.page-wrapper{position:relative;z-index:1;padding-top:64px;}
+.container{max-width:900px;margin:0 auto;padding:0 24px;}
+
+/* SECTION LABELS */
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--purple);margin-bottom:12px;}
+.section-label::before{content:'';width:20px;height:2px;background:var(--purple);border-radius:2px;}
+.section-title{font-family:var(--font-display);font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-1.5px;line-height:1.1;color:var(--navy);margin-bottom:12px;}
+.section-sub{font-size:16px;color:var(--text-muted);max-width:520px;font-weight:400;line-height:1.7;}
+
+/* BUTTONS */
+.btn-primary{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;background:var(--purple);color:#fff;text-decoration:none;border:none;cursor:pointer;font-family:var(--font-body);transition:transform .15s,background .15s;}
+.btn-primary:hover{background:var(--purple-dark);transform:translateY(-1px);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;background:transparent;color:var(--navy);text-decoration:none;border:1.5px solid var(--border-soft);cursor:pointer;font-family:var(--font-body);transition:border-color .15s,background .15s,color .15s;}
+.btn-outline:hover{border-color:var(--purple);background:var(--purple-dim);color:var(--purple);}
+
+/* FOOTER */
+footer{position:relative;z-index:1;padding:24px 40px;border-top:1px solid var(--border-soft);background:var(--bg-soft);display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--text-dim);flex-wrap:wrap;gap:8px;}
+.footer-logo{font-family:var(--font-display);font-weight:800;color:var(--navy);font-size:15px;}
+.footer-logo span{color:var(--purple);}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  footer{flex-direction:column;text-align:center;}
+}
