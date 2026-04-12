@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Roshan Faisal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.page-hero { padding:80px 24px 48px; border-bottom:1px solid var(--border-dim); }
+
+.filter-bar { padding:32px 24px 0; }
+.filter-tabs { display:flex; gap:6px; flex-wrap:wrap; }
+.filter-tab { font-size:13px; font-weight:500; padding:8px 18px; border-radius:100px; border:1px solid var(--border-dim); background:transparent; color:var(--text-muted); cursor:pointer; font-family:var(--font-body); transition:all .2s; }
+.filter-tab:hover { border-color:var(--border); color:var(--text); }
+.filter-tab.active { background:var(--purple); border-color:var(--purple); color:#fff; }
+
+.projects-section { padding:40px 24px 100px; }
+.projects-list { display:flex; flex-direction:column; gap:24px; }
+
+/* PROJECT CARD */
+.project-card { background:var(--card-bg); border:1px solid var(--border-dim); border-radius:18px; overflow:hidden; transition:border-color .2s; }
+.project-card:hover { border-color:var(--border); }
+
+/* Project image */
+.project-img-wrap {
+  width:100%; aspect-ratio:16/7; overflow:hidden;
+  background:var(--navy-mid); position:relative;
+}
+.project-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .4s ease; }
+.project-card:hover .project-img-wrap img { transform:scale(1.02); }
+
+/* Placeholder shown until you add a real screenshot */
+.img-placeholder {
+  width:100%; height:100%; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:12px;
+  color:var(--text-dim); font-size:13px; font-weight:400;
+  border-bottom:1px solid var(--border-dim);
+}
+.img-placeholder svg { width:36px; height:36px; stroke:var(--text-dim); fill:none; }
+.img-placeholder span { font-size:12px; color:var(--text-dim); }
+
+.project-content { padding:28px; }
+.project-meta { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:10px; }
+.project-cat { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.12em; color:var(--purple-light); }
+.project-status { font-size:11px; font-weight:600; padding:4px 12px; border-radius:100px; white-space:nowrap; }
+.status-live { background:rgba(0,212,180,.1); color:var(--teal); border:1px solid rgba(0,212,180,.3); }
+.status-wip { background:rgba(251,191,36,.1); color:#FBBF24; border:1px solid rgba(251,191,36,.3); }
+.status-planned { background:rgba(139,155,181,.1); color:var(--text-muted); border:1px solid var(--border-dim); }
+
+.project-title { font-family:var(--font-display); font-size:24px; font-weight:800; color:var(--text); letter-spacing:-.5px; margin-bottom:8px; line-height:1.15; }
+.project-oneliner { font-size:14px; color:var(--text-muted); font-weight:300; margin-bottom:0; line-height:1.6; }
+
+.expand-btn { width:100%; padding:14px 28px; background:transparent; border:none; border-top:1px solid var(--border-dim); color:var(--purple-light); font-size:13px; font-weight:500; cursor:pointer; font-family:var(--font-body); display:flex; align-items:center; justify-content:center; gap:8px; transition:background .2s; }
+.expand-btn:hover { background:var(--purple-glow); }
+.expand-btn svg { width:14px; height:14px; transition:transform .3s; flex-shrink:0; }
+.expand-btn.open svg { transform:rotate(180deg); }
+
+.project-details { padding:0 28px; max-height:0; overflow:hidden; transition:max-height .4s ease, padding .3s; }
+.project-details.open { max-height:2000px; padding-bottom:8px; }
+
+.details-section { padding:20px 0; border-top:1px solid var(--border-dim); }
+.details-section:first-child { border-top:none; }
+.details-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.12em; color:var(--purple-light); margin-bottom:10px; }
+.details-text { font-size:15px; color:var(--text-muted); line-height:1.8; font-weight:300; }
+.details-text strong { color:var(--text); font-weight:500; }
+
+.agent-list { list-style:none; display:flex; flex-direction:column; gap:8px; margin-top:4px; }
+.agent-list li { font-size:14px; color:var(--text-muted); padding:10px 14px; border-radius:8px; background:rgba(124,92,252,.05); border:1px solid var(--border-dim); line-height:1.5; font-weight:300; }
+.agent-list li strong { color:var(--text); font-weight:500; }
+
+.features-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+.feat-pill { font-size:12px; padding:5px 12px; border-radius:100px; background:var(--navy-mid); border:1px solid var(--border-dim); color:var(--text-muted); }
+
+.project-footer { padding:0 28px 24px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:16px; border-top:1px solid var(--border-dim); padding-top:20px; }
+.tech-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.tech-tag { font-size:11px; font-weight:600; padding:3px 10px; border-radius:4px; background:var(--purple-dim); color:var(--purple-light); }
+.project-links { display:flex; gap:8px; }
+.proj-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500; padding:8px 14px; border-radius:8px; text-decoration:none; transition:all .2s; border:1px solid var(--border-dim); color:var(--text-muted); }
+.proj-link:hover { border-color:var(--purple); color:var(--purple-light); }
+.proj-link svg { width:14px; height:14px; flex-shrink:0; }
+
+@media(max-width:600px){
+  .project-content { padding:20px; }
+  .project-details { }
+  .project-footer { padding:16px 20px 20px; }
+  .expand-btn { padding:14px 20px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">Roshan<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Let's talk</a>
+</nav>
+
+<div class="page-wrapper">
+
+<section class="page-hero">
+  <div class="container">
+    <div class="section-label">My work</div>
+    <h1 class="section-title">Projects</h1>
+    <p class="section-sub">Real AI systems built with production requirements in mind — not tutorials, not demos.</p>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="container">
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filter('all',this)">All Projects</button>
+      <button class="filter-tab" onclick="filter('multi-agent',this)">Multi-Agent</button>
+      <button class="filter-tab" onclick="filter('rag',this)">RAG Systems</button>
+      <button class="filter-tab" onclick="filter('nlsql',this)">NL → SQL</button>
+    </div>
+  </div>
+</div>
+
+<section class="projects-section">
+  <div class="container">
+    <div class="projects-list">
+
+      <!-- ================================================
+           PROJECT 1 — ContentForge AI
+           TO ADD YOUR SCREENSHOT:
+           1. Save your screenshot as "project1.png" (or jpg)
+           2. Replace the <div class="img-placeholder"> block with:
+              <img src="project1.png" alt="ContentForge AI screenshot">
+           TO EDIT LINKS: Find "EDIT LINK" comments below
+           ================================================ -->
+      <div class="project-card fade-in" data-cat="multi-agent">
+        <div class="project-img-wrap">
+          <!-- REPLACE THIS BLOCK with: <img src="project1.png" alt="ContentForge AI"> -->
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            <span>Add screenshot → save as project1.png</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-cat">Multi-Agent System</span>
+            <span class="project-status status-live">Live</span>
+          </div>
+          <div class="project-title">ContentForge AI</div>
+          <div class="project-oneliner">An autonomous multi-agent system that researches, writes, and delivers SEO-optimized content — end-to-end, no manual input.</div>
+        </div>
+        <div class="project-footer">
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span><span class="tech-tag">CrewAI</span><span class="tech-tag">Groq</span><span class="tech-tag">FastAPI</span><span class="tech-tag">Streamlit</span><span class="tech-tag">SQLite</span>
+          </div>
+          <div class="project-links">
+            <!-- EDIT LINK: Replace href with your GitHub repo URL -->
+            <a href="https://github.com/Roshu-313/contentforge-ai" target="_blank" class="proj-link">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+            <!-- EDIT LINK: Replace href with your Loom/demo URL -->
+            <a href="https://www.loom.com/share/900a41b6c90642f7852d3afcf8422004" target="_blank" class="proj-link">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleProject(this)">
+          Show more details
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="details-section">
+            <div class="details-label">The problem</div>
+            <div class="details-text">Traditional AI content tools rely on single prompts, leading to generic and inaccurate results. ContentForge AI solves this by orchestrating <strong>multiple specialized AI agents</strong> in a structured pipeline — each handling a specific stage for higher accuracy and production-ready outputs.</div>
+          </div>
+          <div class="details-section">
+            <div class="details-label">How it works</div>
+            <ul class="agent-list">
+              <li><strong>Researcher Agent</strong> → Real-time web research using Serper API, trend identification, SEO keyword extraction</li>
+              <li><strong>Writer Agent</strong> → 600–800 word blog post + platform-specific social media content (LinkedIn, X, Instagram)</li>
+              <li><strong>Reviewer Agent</strong> → Quality validation, formatting check, structured Pydantic JSON output</li>
+            </ul>
+          </div>
+          <div class="details-section">
+            <div class="details-label">Key features</div>
+            <div class="features-pills">
+              <span class="feat-pill">Multi-agent orchestration (CrewAI)</span>
+              <span class="feat-pill">Real-time web research</span>
+              <span class="feat-pill">SEO-optimized long-form content</span>
+              <span class="feat-pill">Platform-native social posts</span>
+              <span class="feat-pill">FastAPI + Streamlit UI</span>
+              <span class="feat-pill">SQLite content history</span>
+              <span class="feat-pill">Pydantic structured output</span>
+              <span class="feat-pill">Free-tier API optimized</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           PROJECT 2 — Agentic RAG
+           TO ADD YOUR SCREENSHOT:
+           Save as "project2.png" and replace the placeholder div
+           ================================================ -->
+      <div class="project-card fade-in" data-cat="rag">
+        <div class="project-img-wrap">
+          <!-- REPLACE THIS BLOCK with: <img src="project2.png" alt="Agentic RAG screenshot"> -->
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            <span>Add screenshot → save as project2.png</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-cat">RAG System</span>
+            <span class="project-status status-live">Live</span>
+          </div>
+          <div class="project-title">Agentic RAG Knowledge System</div>
+          <div class="project-oneliner">An intelligent knowledge assistant that retrieves, verifies, and cites information from documents — designed for accuracy and real-world use.</div>
+        </div>
+        <div class="project-footer">
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span><span class="tech-tag">FAISS</span><span class="tech-tag">BM25</span><span class="tech-tag">LangChain</span><span class="tech-tag">Groq API</span><span class="tech-tag">Streamlit</span>
+          </div>
+          <div class="project-links">
+            <!-- EDIT LINK -->
+            <a href="https://github.com/Roshu-313/agentic-rag-alchemist" target="_blank" class="proj-link">
+              <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+              GitHub
+            </a>
+            <!-- EDIT LINK -->
+            <a href="https://www.loom.com/share/18208275da9c47cc9e90ce5be030fe3a" target="_blank" class="proj-link">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              Demo
+            </a>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleProject(this)">
+          Show more details
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="details-section">
+            <div class="details-label">The problem</div>
+            <div class="details-text">Most AI systems hallucinate because they rely only on memory. This system uses an <strong>agentic retrieval pipeline</strong> — it actively searches documents, evaluates relevance, and only answers when it has strong supporting evidence. Every response includes source citations.</div>
+          </div>
+          <div class="details-section">
+            <div class="details-label">Designed for</div>
+            <ul class="agent-list">
+              <li><strong>Internal knowledge bases</strong> → Instant answers from your company documents</li>
+              <li><strong>Document-heavy workflows</strong> → Legal, research, compliance teams</li>
+              <li><strong>Research & analysis</strong> → Cited, verifiable outputs every time</li>
+            </ul>
+          </div>
+          <div class="details-section">
+            <div class="details-label">Key features</div>
+            <div class="features-pills">
+              <span class="feat-pill">Agent-driven retrieval (not single-pass)</span>
+              <span class="feat-pill">Source citations on every response</span>
+              <span class="feat-pill">FAISS + BM25 hybrid search</span>
+              <span class="feat-pill">Cross-encoder reranking</span>
+              <span class="feat-pill">Streaming responses</span>
+              <span class="feat-pill">Multi-LLM support (OpenAI / Claude / Groq)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           PROJECT 3 — AI Database Assistant (FYP)
+           TO ADD YOUR SCREENSHOT:
+           Save as "project3.png" and replace the placeholder div
+           ================================================ -->
+      <div class="project-card fade-in" data-cat="nlsql">
+        <div class="project-img-wrap">
+          <!-- REPLACE THIS BLOCK with: <img src="project3.png" alt="AI Database Assistant screenshot"> -->
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            <span>Add screenshot → save as project3.png</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-cat">NL → SQL · Final Year Project</span>
+            <span class="project-status status-wip">In Progress</span>
+          </div>
+          <div class="project-title">AI Database Assistant</div>
+          <div class="project-oneliner">Allows non-technical users to query databases using plain English — converts to SQL, executes it safely, and explains results in plain language.</div>
+        </div>
+        <div class="project-footer">
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span><span class="tech-tag">OpenAI</span><span class="tech-tag">SQLAlchemy</span><span class="tech-tag">FastAPI</span><span class="tech-tag">LangChain</span><span class="tech-tag">Streamlit</span>
+          </div>
+          <div class="project-links">
+            <!-- EDIT LINK: Add GitHub URL when ready -->
+            <span class="proj-link" style="opacity:.4;cursor:default;">GitHub — coming soon</span>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleProject(this)">
+          Show more details
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="details-section">
+            <div class="details-label">The problem</div>
+            <div class="details-text">Business teams depend on developers to access data. This bottleneck slows decisions. Users can just ask: <strong>"Show top customers by revenue last month"</strong> — and get structured results with plain-English explanations, no SQL knowledge needed.</div>
+          </div>
+          <div class="details-section">
+            <div class="details-label">How it works</div>
+            <ul class="agent-list">
+              <li><strong>Step 1</strong> → Schema-aware NL → SQL conversion using LangChain + OpenAI</li>
+              <li><strong>Step 2</strong> → Safe query execution with guardrails via SQLAlchemy</li>
+              <li><strong>Step 3</strong> → Structured results returned with data visualizations</li>
+              <li><strong>Step 4</strong> → Plain-English explanation of what the data means</li>
+            </ul>
+          </div>
+          <div class="details-section">
+            <div class="details-label">Key features</div>
+            <div class="features-pills">
+              <span class="feat-pill">Schema-aware NL → SQL</span>
+              <span class="feat-pill">Safe query execution</span>
+              <span class="feat-pill">Plain-English explanations</span>
+              <span class="feat-pill">Multi-database support</span>
+              <span class="feat-pill">User-friendly Streamlit UI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           PROJECT 4 — Email Automation (Planned)
+           ================================================ -->
+      <div class="project-card fade-in" data-cat="multi-agent">
+        <div class="project-img-wrap">
+          <div class="img-placeholder">
+            <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <span>Planned — no screenshot yet</span>
+          </div>
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-cat">Multi-Agent</span>
+            <span class="project-status status-planned">Planned</span>
+          </div>
+          <div class="project-title">AI Email Automation Agent</div>
+          <div class="project-oneliner">An AI system that classifies, prioritizes, and responds to emails automatically — with CRM integration and workflow routing.</div>
+        </div>
+        <div class="project-footer">
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span><span class="tech-tag">LangChain</span><span class="tech-tag">n8n</span>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleProject(this)">
+          Show planned features
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="details-section">
+            <div class="details-label">Planned features</div>
+            <div class="features-pills">
+              <span class="feat-pill">Email classification (support / sales / spam)</span>
+              <span class="feat-pill">Auto-response generation</span>
+              <span class="feat-pill">Workflow routing</span>
+              <span class="feat-pill">CRM integration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================
+           ADD A NEW PROJECT HERE
+           Copy this entire block, paste it above this comment,
+           and fill in your project's details.
+
+      <div class="project-card fade-in" data-cat="CATEGORY">
+        CATEGORY options: multi-agent | rag | nlsql
+
+        <div class="project-img-wrap">
+          <img src="projectN.png" alt="Your project name">
+        </div>
+        <div class="project-content">
+          <div class="project-meta">
+            <span class="project-cat">Category Label</span>
+            <span class="project-status status-live">Live</span>
+            status options: status-live | status-wip | status-planned
+          </div>
+          <div class="project-title">Your Project Name</div>
+          <div class="project-oneliner">One sentence describing what it does.</div>
+        </div>
+        <div class="project-footer">
+          <div class="tech-tags">
+            <span class="tech-tag">Tech1</span>
+            <span class="tech-tag">Tech2</span>
+          </div>
+          <div class="project-links">
+            <a href="GITHUB_URL" target="_blank" class="proj-link">GitHub</a>
+            <a href="DEMO_URL" target="_blank" class="proj-link">Demo</a>
+          </div>
+        </div>
+        <button class="expand-btn" onclick="toggleProject(this)">
+          Show more details
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="project-details">
+          <div class="details-section">
+            <div class="details-label">Description</div>
+            <div class="details-text">Your project description here.</div>
+          </div>
+        </div>
+      </div>
+
+      ================================================ -->
+
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Roshan<span>.</span></div>
+  <div>AI Workflow Automation Engineer · Pakistan 🇵🇰</div>
+  <div>© 2025 Roshan Faisal</div>
+</footer>
+
+<script>
+function toggleProject(btn) {
+  const details = btn.nextElementSibling;
+  const isOpen = details.classList.contains('open');
+  details.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  const textNode = btn.firstChild;
+  textNode.textContent = isOpen ? ' Show more details' : ' Show less';
+}
+
+function filter(cat, tab) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
+  });
+}
+
+const obs=new IntersectionObserver(entries=>{entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*100);});},{threshold:.05});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
