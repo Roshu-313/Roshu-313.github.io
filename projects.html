@@ -17,11 +17,14 @@
 .projects-list{display:flex;flex-direction:column;gap:24px;}
 .project-card{background:var(--bg-white);border:2px solid var(--border-soft);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;}
 .project-card:hover{box-shadow:var(--shadow-md);border-color:var(--border);}
-.project-img-wrap{width:100%;aspect-ratio:16/7;overflow:hidden;background:var(--bg-lavender);border-bottom:2px solid var(--border-soft);}
+
+/* FIX: fixed height instead of aspect-ratio so ALL cards are identical */
+.project-img-wrap{width:100%;height:260px;overflow:hidden;background:var(--bg-lavender);border-bottom:2px solid var(--border-soft);display:flex;align-items:center;justify-content:center;}
 .project-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s ease;}
 .project-card:hover .project-img-wrap img{transform:scale(1.02);}
 .img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text-dim);font-size:13px;font-weight:600;}
 .img-placeholder svg{width:36px;height:36px;stroke:var(--purple-light);fill:none;}
+
 .project-content{padding:28px 28px 0;}
 .project-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
 .project-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--purple);}
@@ -54,7 +57,11 @@
 .proj-link{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:8px 16px;border-radius:8px;text-decoration:none;transition:all .2s;border:2px solid var(--border-soft);color:var(--text-muted);background:var(--bg-white);}
 .proj-link:hover{border-color:var(--purple);color:var(--purple);background:var(--purple-soft);}
 .proj-link svg{width:14px;height:14px;flex-shrink:0;}
-@media(max-width:600px){.project-content,.project-footer{padding-left:20px;padding-right:20px;}.page-hero,.filter-bar,.projects-section{padding-left:20px;padding-right:20px;}}
+@media(max-width:600px){
+  .project-content,.project-footer{padding-left:20px;padding-right:20px;}
+  .page-hero,.filter-bar,.projects-section{padding-left:20px;padding-right:20px;}
+  .project-img-wrap{height:200px;}
+}
 </style>
 </head>
 <body>
@@ -81,9 +88,11 @@
 
 <section class="projects-section"><div class="container"><div class="projects-list">
 
-  <!-- PROJECT 1 — REPLACE img-placeholder with: <img src="project1.png" alt="ContentForge AI"> -->
+  <!-- PROJECT 1 -->
   <div class="project-card fade-in" data-cat="multi-agent">
-    <div class="project-img-wrap"><img src="project1.png" alt="ContentForge AI"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><span>Add screenshot → save as project1.png</span></div></div>
+    <div class="project-img-wrap">
+      <img src="project1.png" alt="ContentForge AI">
+    </div>
     <div class="project-content">
       <div class="project-meta"><span class="project-cat">Multi-Agent System</span><span class="project-status status-live">Live</span></div>
       <div class="project-title">ContentForge AI</div>
@@ -104,9 +113,11 @@
     </div>
   </div>
 
-  <!-- PROJECT 2 — REPLACE img-placeholder with: <img src="project2.png" alt="Agentic RAG"> -->
+  <!-- PROJECT 2 -->
   <div class="project-card fade-in" data-cat="rag">
-    <div class="project-img-wrap"><img src="project2.png" alt="Agentic RAG"><svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg><span>Add screenshot → save as project2.png</span></div></div>
+    <div class="project-img-wrap">
+      <img src="project2.png" alt="Agentic RAG Knowledge System">
+    </div>
     <div class="project-content">
       <div class="project-meta"><span class="project-cat">RAG System</span><span class="project-status status-live">Live</span></div>
       <div class="project-title">Agentic RAG Knowledge System</div>
@@ -127,9 +138,11 @@
     </div>
   </div>
 
-  <!-- PROJECT 3 — REPLACE img-placeholder with: <img src="project3.png" alt="AI Database Assistant"> -->
+  <!-- PROJECT 3 -->
   <div class="project-card fade-in" data-cat="nlsql">
-    <div class="project-img-wrap"><img src="project3.png" alt="AI Database Assistant"><svg viewBox="0 0 24 24" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg><span>Add screenshot → save as project3.png</span></div></div>
+    <div class="project-img-wrap">
+      <img src="project3.png" alt="AI Database Assistant">
+    </div>
     <div class="project-content">
       <div class="project-meta"><span class="project-cat">NL → SQL · Final Year Project</span><span class="project-status status-wip">In Progress</span></div>
       <div class="project-title">AI Database Assistant</div>
@@ -149,7 +162,12 @@
 
   <!-- PROJECT 4 -->
   <div class="project-card fade-in" data-cat="multi-agent">
-    <div class="project-img-wrap"><div class="img-placeholder"><svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg><span>Planned — no screenshot yet</span></div></div>
+    <div class="project-img-wrap">
+      <div class="img-placeholder">
+        <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        <span>Planned — no screenshot yet</span>
+      </div>
+    </div>
     <div class="project-content">
       <div class="project-meta"><span class="project-cat">Multi-Agent</span><span class="project-status status-planned">Planned</span></div>
       <div class="project-title">AI Email Automation Agent</div>
