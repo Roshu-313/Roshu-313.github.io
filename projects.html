@@ -17,14 +17,11 @@
 .projects-list{display:flex;flex-direction:column;gap:24px;}
 .project-card{background:var(--bg-white);border:2px solid var(--border-soft);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);transition:box-shadow .2s,border-color .2s;}
 .project-card:hover{box-shadow:var(--shadow-md);border-color:var(--border);}
-
-/* FIX: fixed height instead of aspect-ratio so ALL cards are identical */
 .project-img-wrap{width:100%;height:260px;overflow:hidden;background:var(--bg-lavender);border-bottom:2px solid var(--border-soft);display:flex;align-items:center;justify-content:center;}
 .project-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .4s ease;}
 .project-card:hover .project-img-wrap img{transform:scale(1.02);}
 .img-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--text-dim);font-size:13px;font-weight:600;}
 .img-placeholder svg{width:36px;height:36px;stroke:var(--purple-light);fill:none;}
-
 .project-content{padding:28px 28px 0;}
 .project-meta{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
 .project-cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--purple);}
@@ -82,6 +79,7 @@
 <div class="filter-bar"><div class="container"><div class="filter-tabs">
   <button class="filter-tab active" onclick="filter('all',this)">All Projects</button>
   <button class="filter-tab" onclick="filter('multi-agent',this)">Multi-Agent</button>
+  <button class="filter-tab" onclick="filter('automation',this)">Automation</button>
   <button class="filter-tab" onclick="filter('rag',this)">RAG Systems</button>
   <button class="filter-tab" onclick="filter('nlsql',this)">NL → SQL</button>
 </div></div></div>
@@ -113,7 +111,7 @@
     </div>
   </div>
 
-  <!-- PROJECT 2 — upload screenshot as projectfr.png -->
+  <!-- PROJECT 2 — OfficeMax -->
   <div class="project-card fade-in" data-cat="rag">
     <div class="project-img-wrap">
       <img src="projectfr.png" alt="OfficeMax Furniture AI Chatbot">
@@ -127,7 +125,6 @@
       <div class="tech-tags"><span class="tech-tag">Python</span><span class="tech-tag">FastAPI</span><span class="tech-tag">LangChain</span><span class="tech-tag">FAISS</span><span class="tech-tag">BM25</span><span class="tech-tag">Groq</span><span class="tech-tag">SentenceTransformers</span><span class="tech-tag">Docker</span><span class="tech-tag">Google Cloud Run</span></div>
       <div class="project-links">
         <a href="https://github.com/Roshu-313/furniture-rag-backend" target="_blank" class="proj-link"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
-        <!-- EDIT: Replace # with your Loom URL when ready -->
         <a href="#" target="_blank" class="proj-link"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Demo</a>
         <a href="https://officemaxfurnitures.com" target="_blank" class="proj-link"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>Live Site</a>
       </div>
@@ -140,7 +137,7 @@
     </div>
   </div>
 
-  <!-- PROJECT 3 -->
+  <!-- PROJECT 3 — NL SQL -->
   <div class="project-card fade-in" data-cat="nlsql">
     <div class="project-img-wrap">
       <img src="project3.png" alt="AI Database Assistant">
@@ -162,8 +159,8 @@
     </div>
   </div>
 
-  <!-- PROJECT 4 — upload screenshot as project4.png -->
-  <div class="project-card fade-in" data-cat="multi-agent">
+  <!-- PROJECT 4 — Lead Qualification -->
+  <div class="project-card fade-in" data-cat="automation">
     <div class="project-img-wrap">
       <img src="project4.png" alt="AI Lead Qualification System">
     </div>
@@ -187,7 +184,32 @@
     </div>
   </div>
 
-  <!-- PROJECT 5 — Agentic RAG -->
+  <!-- PROJECT 5 — Insurance Automation — upload screenshot as projectleads.png -->
+  <div class="project-card fade-in" data-cat="automation">
+    <div class="project-img-wrap">
+      <img src="projectleads.png" alt="Insurance Agency AI Automation">
+    </div>
+    <div class="project-content">
+      <div class="project-meta"><span class="project-cat">AI Workflow Automation</span><span class="project-status status-live">Live</span></div>
+      <div class="project-title">Insurance Agency AI Automation</div>
+      <div class="project-oneliner">A fully automated lead follow-up system for insurance agencies — zero manual follow-up, agents only make the call that converts.</div>
+    </div>
+    <div class="project-footer">
+      <div class="tech-tags"><span class="tech-tag">n8n</span><span class="tech-tag">Groq AI</span><span class="tech-tag">Twilio</span><span class="tech-tag">Gmail</span><span class="tech-tag">Google Sheets</span><span class="tech-tag">Slack</span></div>
+      <div class="project-links">
+        <a href="https://github.com/Roshu-313/insurance-agency-ai-automation" target="_blank" class="proj-link"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
+        <a href="https://www.loom.com/share/c1aacc3b8770450d8fa608587e59bd6f" target="_blank" class="proj-link"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Demo</a>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleProject(this)">Show more details <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+    <div class="project-details">
+      <div class="details-section"><div class="details-label">The problem</div><div class="details-text">Insurance agents spend hours manually following up with leads via calls, texts, and emails — most of which go unanswered. Leads go cold while agents are stuck doing admin instead of selling. This system handles the entire follow-up sequence automatically, so agents only engage when a lead is warm.</div></div>
+      <div class="details-section"><div class="details-label">How it works</div><ul class="agent-list"><li><strong>Day 0</strong> → New lead added to Google Sheets → Groq AI (LLaMA 3.3 70B) writes a personalized SMS → Twilio sends it instantly → Sheet updated to "Contacted"</li><li><strong>Day 2</strong> → Personalized follow-up email sent automatically via Gmail</li><li><strong>Day 5</strong> → Urgency SMS fires, tailored to lead type (Medicare, ACA, or Auto)</li><li><strong>Day 10</strong> → Soft close email sends automatically</li><li><strong>Every step</strong> → Slack notifies the agent in real time</li></ul></div>
+      <div class="details-section"><div class="details-label">Key features</div><div class="features-pills"><span class="feat-pill">AI-personalized SMS via Twilio</span><span class="feat-pill">10-day automated follow-up sequence</span><span class="feat-pill">LLaMA 3.3 70B copywriting</span><span class="feat-pill">Google Sheets as CRM</span><span class="feat-pill">Gmail automated emails</span><span class="feat-pill">Real-time Slack agent alerts</span><span class="feat-pill">Insurance-type aware messaging (Medicare / ACA / Auto)</span><span class="feat-pill">Zero manual follow-up</span></div></div>
+    </div>
+  </div>
+
+  <!-- PROJECT 6 — Agentic RAG -->
   <div class="project-card fade-in" data-cat="rag">
     <div class="project-img-wrap">
       <img src="project2.png" alt="Agentic RAG Knowledge System">
@@ -207,7 +229,7 @@
     <button class="expand-btn" onclick="toggleProject(this)">Show more details <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
     <div class="project-details">
       <div class="details-section"><div class="details-label">The problem</div><div class="details-text">Most AI systems hallucinate because they rely only on memory. This system uses an <strong>agentic retrieval pipeline</strong> — it actively searches documents, evaluates relevance, and only answers when it has strong supporting evidence. Every response includes source citations.</div></div>
-      <div class="details-section"><div class="details-label">Designed for</div><ul class="agent-list"><li><strong>Internal knowledge bases</strong> → Instant answers from your company documents</li><li><strong>Document-heavy workflows</strong> → Legal, research, compliance teams</li><li><strong>Research & analysis</strong> → Cited, verifiable outputs every time</li></ul></div>
+      <div class="details-section"><div class="details-label">Designed for</div><ul class="agent-list"><li><strong>Internal knowledge bases</strong> → Instant answers from your company documents</li><li><strong>Document-heavy workflows</strong> → Legal, research, compliance teams</li><li><strong>Research &amp; analysis</strong> → Cited, verifiable outputs every time</li></ul></div>
       <div class="details-section"><div class="details-label">Key features</div><div class="features-pills"><span class="feat-pill">Agent-driven retrieval</span><span class="feat-pill">Source citations on every response</span><span class="feat-pill">FAISS + BM25 hybrid search</span><span class="feat-pill">Cross-encoder reranking</span><span class="feat-pill">Streaming responses</span><span class="feat-pill">Multi-LLM support</span></div></div>
     </div>
   </div>
@@ -215,7 +237,7 @@
   <!--
   ADD A NEW PROJECT — copy this block and fill in your details:
   <div class="project-card fade-in" data-cat="CATEGORY">
-    data-cat: multi-agent | rag | nlsql
+    data-cat options: multi-agent | automation | rag | nlsql
     <div class="project-img-wrap"><img src="projectN.png" alt="Project Name"></div>
     <div class="project-content">
       <div class="project-meta"><span class="project-cat">Category</span><span class="project-status status-live">Live</span></div>
