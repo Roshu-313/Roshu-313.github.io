@@ -82,6 +82,7 @@
   <button class="filter-tab" onclick="filter('automation',this)">Automation</button>
   <button class="filter-tab" onclick="filter('rag',this)">RAG Systems</button>
   <button class="filter-tab" onclick="filter('nlsql',this)">NL → SQL</button>
+  <button class="filter-tab" onclick="filter('voice',this)">Voice AI</button>
 </div></div></div>
 
 <section class="projects-section"><div class="container"><div class="projects-list">
@@ -260,7 +261,33 @@
     </div>
   </div>
 
-  <!--
+
+  <!-- PROJECT 8 — AI Inbound Call Qualifier — upload screenshot as projectvoice.png -->
+  <div class="project-card fade-in" data-cat="voice">
+    <div class="project-img-wrap">
+      <img src="projectvoice.png" alt="AI Inbound Call Qualifier — Summit Insurance Group">
+    </div>
+    <div class="project-content">
+      <div class="project-meta"><span class="project-cat">Voice AI · Workflow Automation</span><span class="project-status status-live">Live</span></div>
+      <div class="project-title">AI Inbound Call Qualifier</div>
+      <div class="project-oneliner">A 24/7 AI voice agent named Sarah that answers every inbound insurance call, qualifies the lead, and routes hot prospects to agents in real time — never misses a lead.</div>
+    </div>
+    <div class="project-footer">
+      <div class="tech-tags"><span class="tech-tag">VAPI</span><span class="tech-tag">Deepgram Nova-2</span><span class="tech-tag">n8n</span><span class="tech-tag">Groq LLaMA 3.3 70B</span><span class="tech-tag">Slack</span><span class="tech-tag">Google Sheets</span><span class="tech-tag">Ngrok</span></div>
+      <div class="project-links">
+        <a href="https://www.loom.com/share/cf944489646b4bb3b8362c00e2a7299a" target="_blank" class="proj-link"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Demo</a>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleProject(this)">Show more details <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+    <div class="project-details">
+      <div class="details-section"><div class="details-label">The problem</div><div class="details-text">Independent insurance agencies lose leads every day to missed calls and slow manual data entry — especially during AEP season when call volume spikes. Every missed call is a lost policy. This system ensures <strong>every single inbound call is answered, qualified, and logged automatically</strong>, 24 hours a day.</div></div>
+      <div class="details-section"><div class="details-label">How it works</div><ul class="agent-list"><li><strong>Inbound call</strong> → VAPI routes the call to Alex, the AI voice agent, who picks up instantly 24/7</li><li><strong>Natural conversation</strong> → Alex qualifies the caller for Medicare, ACA, or Auto insurance through a natural dialogue</li><li><strong>AI scoring</strong> → Groq LLaMA 3.3 70B scores every lead as Hot, Warm, or Cold based on the conversation</li><li><strong>Hot lead alert</strong> → Instant Slack notification fires to the agent for every Hot lead in real time</li><li><strong>Auto CRM logging</strong> → Every call is automatically logged to Google Sheets — no manual data entry</li></ul></div>
+      <div class="details-section"><div class="details-label">Key features</div><div class="features-pills"><span class="feat-pill">24/7 inbound call answering</span><span class="feat-pill">Natural AI voice conversation (VAPI)</span><span class="feat-pill">Deepgram Nova-2 speech-to-text</span><span class="feat-pill">Hot / Warm / Cold lead scoring</span><span class="feat-pill">Instant Slack hot lead alerts</span><span class="feat-pill">Automatic Google Sheets CRM logging</span><span class="feat-pill">Medicare / ACA / Auto qualification</span><span class="feat-pill">Built for AEP season</span></div></div>
+      <div class="details-section"><div class="details-label">Built for</div><div class="details-text">Independent insurance agencies during AEP season who are losing leads to missed calls and manual data entry. Summit Insurance Group was the first client deployment.</div></div>
+    </div>
+  </div>
+
+    <!--
   ADD A NEW PROJECT — copy this block and fill in your details:
   <div class="project-card fade-in" data-cat="CATEGORY">
     data-cat options: multi-agent | automation | rag | nlsql
