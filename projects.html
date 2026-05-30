@@ -83,6 +83,7 @@
   <button class="filter-tab" onclick="filter('rag',this)">RAG Systems</button>
   <button class="filter-tab" onclick="filter('nlsql',this)">NL → SQL</button>
   <button class="filter-tab" onclick="filter('voice',this)">Voice AI</button>
+  <button class="filter-tab" onclick="filter('agentic-app',this)">Agentic Apps</button>
 </div></div></div>
 
 <section class="projects-section"><div class="container"><div class="projects-list">
@@ -270,7 +271,7 @@
     <div class="project-content">
       <div class="project-meta"><span class="project-cat">Voice AI · Workflow Automation</span><span class="project-status status-live">Live</span></div>
       <div class="project-title">AI Inbound Call Qualifier</div>
-      <div class="project-oneliner">A 24/7 AI voice agent named Sarah that answers every inbound insurance call, qualifies the lead, and routes hot prospects to agents in real time — never misses a lead.</div>
+      <div class="project-oneliner">A 24/7 AI voice agent named Alex that answers every inbound insurance call, qualifies the lead, and routes hot prospects to agents in real time — never misses a lead.</div>
     </div>
     <div class="project-footer">
       <div class="tech-tags"><span class="tech-tag">VAPI</span><span class="tech-tag">Deepgram Nova-2</span><span class="tech-tag">n8n</span><span class="tech-tag">Groq LLaMA 3.3 70B</span><span class="tech-tag">Slack</span><span class="tech-tag">Google Sheets</span><span class="tech-tag">Ngrok</span></div>
@@ -287,7 +288,54 @@
     </div>
   </div>
 
-    <!--
+  
+
+    <!-- PROJECT 9 — Khidmat AI — upload screenshot as projectkhidmat.png -->
+  <div class="project-card fade-in" data-cat="agentic-app">
+    <div class="project-img-wrap">
+      <img src="projectkhidmat.png" alt="Khidmat AI — Agentic Service Orchestrator">
+    </div>
+    <div class="project-content">
+      <div class="project-meta"><span class="project-cat">Agentic AI · Multi-Agent · Mobile App</span><span class="project-status status-live">Live</span></div>
+      <div class="project-title">Khidmat AI</div>
+      <div class="project-oneliner">A fully agentic service orchestrator for Pakistan's informal economy — accepts requests in Urdu, Roman Urdu, or English and autonomously handles provider matching, dynamic pricing, scheduling, booking, and dispute resolution end-to-end.</div>
+    </div>
+    <div class="project-footer">
+      <div class="tech-tags"><span class="tech-tag">Flutter</span><span class="tech-tag">FastAPI</span><span class="tech-tag">Supabase</span><span class="tech-tag">Google Gemini 1.5 Flash</span><span class="tech-tag">Google Antigravity</span><span class="tech-tag">Koyeb</span><span class="tech-tag">Python</span></div>
+      <div class="project-links">
+        <a href="https://github.com/Roshu-313/khidmat-ai" target="_blank" class="proj-link"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>GitHub</a>
+        <a href="https://drive.google.com/file/d/1fwXbfCIqfueSoVkCU8v9JimeJe5tgoGP/view?usp=sharing" target="_blank" class="proj-link"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Demo</a>
+      </div>
+    </div>
+    <button class="expand-btn" onclick="toggleProject(this)">Show more details <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+    <div class="project-details">
+      <div class="details-section"><div class="details-label">The problem</div><div class="details-text">Pakistan's informal service economy — plumbers, electricians, tutors, mechanics — has no reliable booking system. Finding a trusted provider means asking around, calling friends, and hoping for the best. <strong>Khidmat AI bridges that gap</strong> with an AI-powered orchestration platform accessible via a simple mobile chat interface in any language.</div></div>
+      <div class="details-section"><div class="details-label">8-Agent pipeline</div><ul class="agent-list">
+        <li><strong>IntentParserAgent</strong> → Extracts service type, location, budget &amp; urgency from Urdu/Roman Urdu/English using Gemini</li>
+        <li><strong>ComplexityClassifierAgent</strong> → Scores request complexity (simple/moderate/complex) to route to the right provider tier</li>
+        <li><strong>ProviderMatcherAgent</strong> → 6-factor ranking: Distance(20%) + Reliability(20%) + Rating(18%) + Specialization(15%) + Availability(15%) + Price(12%)</li>
+        <li><strong>SchedulingAgent</strong> → Checks schedule slots for conflicts, finds next available slot, handles emergency priority</li>
+        <li><strong>PricingAgent</strong> → Dynamic pricing with demand multiplier + budget alternative if over budget</li>
+        <li><strong>BookingAgent</strong> → Writes confirmed booking to DB, locks schedule slot, generates confirmation ID</li>
+        <li><strong>ServiceQualityAgent</strong> → Post-service feedback collection, updates provider rating in real time</li>
+        <li><strong>DisputeAgent</strong> → State-machine dispute resolution using Gemini for context-aware decisions and refund logic</li>
+      </ul></div>
+      <div class="details-section"><div class="details-label">Key features</div><div class="features-pills">
+        <span class="feat-pill">Urdu / Roman Urdu / English input</span>
+        <span class="feat-pill">8-agent autonomous pipeline</span>
+        <span class="feat-pill">Google Antigravity orchestration</span>
+        <span class="feat-pill">Dynamic pricing with demand multiplier</span>
+        <span class="feat-pill">Real-time booking via Supabase</span>
+        <span class="feat-pill">AI dispute resolution</span>
+        <span class="feat-pill">Flutter mobile app with agent trace panel</span>
+        <span class="feat-pill">100% free-tier stack</span>
+        <span class="feat-pill">5 stress-test scenarios</span>
+      </div></div>
+      <div class="details-section"><div class="details-label">Tech stack</div><div class="details-text"><strong>Mobile:</strong> Flutter/Dart · <strong>Backend:</strong> FastAPI + Python · <strong>Database:</strong> Supabase (PostgreSQL + Realtime) · <strong>LLM:</strong> Google Gemini 1.5 Flash · <strong>Orchestration:</strong> Google Antigravity Agent Manager · <strong>Hosting:</strong> Koyeb (free tier) · <strong>Languages:</strong> Urdu, Roman Urdu, English, Mixed</div></div>
+    </div>
+  </div>
+
+      <!--
   ADD A NEW PROJECT — copy this block and fill in your details:
   <div class="project-card fade-in" data-cat="CATEGORY">
     data-cat options: multi-agent | automation | rag | nlsql
@@ -310,7 +358,7 @@
 
 </div></div></section>
 </div>
-<footer><div class="footer-logo">Roshan<span>.</span></div><div>Agentic AI Engineer · Pakistan 🇵🇰</div><div>© 2026 Roshan Faisal</div></footer>
+<footer><div class="footer-logo">Roshan<span>.</span></div><div>AI Workflow Automation Engineer · Pakistan 🇵🇰</div><div>© 2025 Roshan Faisal</div></footer>
 <script>
 function toggleProject(btn){const d=btn.nextElementSibling;const o=d.classList.contains('open');d.classList.toggle('open',!o);btn.classList.toggle('open',!o);btn.firstChild.textContent=o?'Show more details ':'Show less ';}
 function filter(cat,tab){document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');document.querySelectorAll('.project-card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'':'none';});}
